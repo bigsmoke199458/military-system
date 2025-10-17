@@ -1,0 +1,164 @@
+# 1. إنشاء ملف README
+echo "# نظام الإدارة العسكرية" >> README.md
+echo "## نظام متكامل لإدارة القطاعات العسكرية" >> README.md
+echo "### المميزات: إدارة الجنود، المساجين، التقارير، والحضور" >> README.md
+
+# 2. إنشاء ملف index.html (النسخة الأساسية)
+@"
+<!DOCTYPE html>
+<html>
+<head>
+    <title>نظام الإدارة العسكرية</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            background: #0a0a0a; 
+            color: #00ff00; 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            text-align: center;
+        }
+        .header { 
+            background: linear-gradient(90deg, #000000, #001a00, #000000);
+            padding: 30px 20px;
+            border-bottom: 3px solid #00ff00;
+            margin-bottom: 30px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+        .stat-card {
+            background: #001100;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px #00ff00;
+        }
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .gta-btn {
+            background: #002200;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .gta-btn:hover {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="margin: 0; font-size: 2.5em; text-shadow: 0 0 15px #00ff00;">🚔 نظام الإدارة العسكرية</h1>
+        <p style="font-size: 1.2em; margin: 10px 0 0 0;">النظام المتكامل لإدارة القطاعات العسكرية</p>
+    </div>
+
+    <div class="container">
+        <h2>📊 الإحصائيات الحية</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div style="font-size: 1.2em;">👥 إجمالي الجنود</div>
+                <div class="stat-number" id="totalSoldiers">0</div>
+                <div style="color: #00cc00;">نشطين في الخدمة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div style="font-size: 1.2em;">🔒 المساجين الحاليين</div>
+                <div class="stat-number" id="currentPrisoners">0</div>
+                <div style="color: #00cc00;">تحت الحراسة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div style="font-size: 1.2em;">🎯 المسؤولون النشطون</div>
+                <div class="stat-number" id="activeOfficers">0</div>
+                <div style="color: #00cc00;">في الخدمة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div style="font-size: 1.2em;">📈 المتجندون الجدد</div>
+                <div class="stat-number" id="newRecruits">0</div>
+                <div style="color: #00cc00;">هذا الشهر</div>
+            </div>
+        </div>
+
+        <div style="margin: 40px 0;">
+            <button class="gta-btn" onclick="showSection('recruitment')">📋 التجنيد والتدريب</button>
+            <button class="gta-btn" onclick="showSection('prison')">🔒 إدارة السجن</button>
+            <button class="gta-btn" onclick="showSection('reports')">📊 التقارير والإحصائيات</button>
+            <button class="gta-btn" onclick="showSection('attendance')">⏰ الحضور والانصراف</button>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #001100; border-radius: 10px; border: 1px solid #00ff00;">
+            <h3>🔄 تحديث مباشر</h3>
+            <p>آخر تحديث: <span id="lastUpdate">--:--</span></p>
+            <button class="gta-btn" onclick="updateStats()">تحديث البيانات</button>
+        </div>
+    </div>
+
+    <script>
+        function updateStats() {
+            // بيانات تجريبية - سيتم استبدالها ببيانات حقيقية من Google Sheets
+            document.getElementById('totalSoldiers').textContent = '147';
+            document.getElementById('currentPrisoners').textContent = '8';
+            document.getElementById('activeOfficers').textContent = '12';
+            document.getElementById('newRecruits').textContent = '15';
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            
+            // تأثير عند التحديث
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.style.animation = 'pulse 0.5s';
+                setTimeout(() => card.style.animation = '', 500);
+            });
+        }
+
+        function showSection(section) {
+            alert('🚧 القسم قيد التطوير: ' + section + '\n\nسيتم إضافة هذا القسم في التحديث القادم');
+        }
+
+        // تحديث تلقائي كل 10 ثواني
+        setInterval(updateStats, 10000);
+        
+        // التهيئة الأولى
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+        });
+    </script>
+</body>
+</html>
+"@ | Out-File -FilePath "index.html" -Encoding UTF8
+
+# 3. تهيئة Git وإضافة الملفات
+git init
+git add .
+git commit -m "إطلاق النسخة الأولى من نظام الإدارة العسكرية"
+
+# 4. رفع الملفات لـ GitHub
+git branch -M main
+git remote add origin https://github.com/bigsmoke199458/military-system.git
+git push -u origin main
